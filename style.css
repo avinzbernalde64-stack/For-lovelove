@@ -1,0 +1,923 @@
+/* ===============================
+   Romantic Garden
+   Part 1
+================================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    overflow-x:hidden;
+    min-height:100vh;
+    font-family:'Poppins',sans-serif;
+    background:#ffd8ec;
+    position:relative;
+}
+
+/* Background */
+
+.background-gradient{
+    position:fixed;
+    inset:0;
+    z-index:-5;
+    background:
+    linear-gradient(
+        180deg,
+        #ffd9ef 0%,
+        #ffc7e6 30%,
+        #f7b5f2 70%,
+        #d3b8ff 100%
+    );
+}
+
+/* Animated Gradient */
+
+.background-gradient::after{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    background:
+    radial-gradient(circle at 20% 20%,rgba(255,255,255,.4),transparent 35%),
+    radial-gradient(circle at 80% 30%,rgba(255,255,255,.25),transparent 35%),
+    radial-gradient(circle at 50% 80%,rgba(255,255,255,.2),transparent 45%);
+
+    animation:gradientMove 15s linear infinite alternate;
+
+}
+
+@keyframes gradientMove{
+
+0%{
+transform:translateY(0);
+}
+
+100%{
+transform:translateY(-60px);
+}
+
+}
+
+/* Main Card */
+
+.card{
+
+width:min(90%,760px);
+
+margin:120px auto;
+
+padding:45px;
+
+border-radius:35px;
+
+backdrop-filter:blur(18px);
+
+background:rgba(255,255,255,.20);
+
+border:1px solid rgba(255,255,255,.45);
+
+box-shadow:
+
+0 10px 40px rgba(255,120,180,.25),
+
+0 0 60px rgba(255,255,255,.20);
+
+text-align:center;
+
+position:relative;
+
+z-index:5;
+
+}
+
+/* Title */
+
+.title{
+
+font-family:'Great Vibes',cursive;
+
+font-size:4rem;
+
+color:#4e213c;
+
+margin-bottom:20px;
+
+text-shadow:
+
+0 4px 12px rgba(255,255,255,.6);
+
+}
+
+/* Message */
+
+.message{
+
+font-size:1.2rem;
+
+line-height:2;
+
+color:#5b4150;
+
+min-height:180px;
+
+margin-top:20px;
+
+}
+
+/* Music Button */
+
+#musicBtn{
+
+position:fixed;
+
+top:35px;
+
+right:35px;
+
+width:70px;
+
+height:70px;
+
+border-radius:50%;
+
+border:none;
+
+background:rgba(255,255,255,.35);
+
+backdrop-filter:blur(12px);
+
+font-size:30px;
+
+cursor:pointer;
+
+box-shadow:
+
+0 10px 25px rgba(255,140,190,.3);
+
+transition:.35s;
+
+z-index:999;
+
+}
+
+#musicBtn:hover{
+
+transform:scale(1.12);
+
+background:white;
+
+}
+
+/* Surprise Button */
+
+#surpriseBtn{
+
+margin-top:35px;
+
+padding:16px 42px;
+
+border:none;
+
+border-radius:50px;
+
+font-size:18px;
+
+font-weight:600;
+
+background:linear-gradient(
+45deg,
+#ff4fa3,
+#ff7eb8
+);
+
+color:white;
+
+cursor:pointer;
+
+transition:.35s;
+
+box-shadow:
+
+0 12px 28px rgba(255,70,150,.35);
+
+}
+
+#surpriseBtn:hover{
+
+transform:translateY(-5px) scale(1.05);
+
+box-shadow:
+
+0 20px 45px rgba(255,70,150,.45);
+
+}
+
+/* Footer */
+
+footer{
+
+text-align:center;
+
+padding:40px;
+
+color:#6a5362;
+
+font-size:15px;
+
+}
+
+/* Garden */
+
+.garden{
+
+position:relative;
+
+height:340px;
+
+display:flex;
+
+justify-content:space-evenly;
+
+align-items:flex-end;
+
+padding:0 30px;
+
+margin-top:80px;
+
+overflow:hidden;
+
+}
+
+/* Ground */
+
+.garden::before{
+
+content:"";
+
+position:absolute;
+
+bottom:-110px;
+
+width:150%;
+
+height:240px;
+
+background:
+
+linear-gradient(
+
+180deg,
+
+#8b5f7a,
+
+#6d495f
+
+);
+
+border-radius:50%;
+
+left:-25%;
+
+}
+/* ==================================
+   PART 2
+   Flowers
+================================== */
+
+.flower{
+    position:relative;
+    width:90px;
+    height:260px;
+    display:flex;
+    justify-content:center;
+    align-items:flex-end;
+    animation:sway 4s ease-in-out infinite;
+    transform-origin:bottom center;
+}
+
+.flower:nth-child(2){
+    animation-delay:.4s;
+}
+
+.flower:nth-child(3){
+    animation-delay:.8s;
+}
+
+.flower:nth-child(4){
+    animation-delay:1.2s;
+}
+
+.flower:nth-child(5){
+    animation-delay:1.6s;
+}
+
+.flower:nth-child(6){
+    animation-delay:2s;
+}
+
+/* Stem */
+
+.stem{
+    position:absolute;
+    bottom:0;
+    width:8px;
+    height:170px;
+    background:linear-gradient(
+        to bottom,
+        #46b44a,
+        #206d28
+    );
+    border-radius:20px;
+}
+
+/* Leaves */
+
+.leaf{
+    position:absolute;
+    width:42px;
+    height:22px;
+    background:#47b648;
+    border-radius:100px 0;
+}
+
+.leaf.left{
+    left:6px;
+    bottom:70px;
+    transform:rotate(-35deg);
+}
+
+.leaf.right{
+    right:6px;
+    bottom:110px;
+    transform:rotate(35deg);
+}
+
+/* Bloom */
+
+.bloom{
+    position:absolute;
+    bottom:155px;
+    width:82px;
+    height:82px;
+    transition:.5s;
+    cursor:pointer;
+}
+
+/* Petals */
+
+.bloom::before,
+.bloom::after{
+
+content:"";
+
+position:absolute;
+
+left:50%;
+top:50%;
+
+transform:translate(-50%,-50%);
+
+width:30px;
+height:56px;
+
+border-radius:100px;
+
+}
+
+/* Yellow Flower */
+
+.flower[data-color="yellow"] .bloom::before,
+.flower[data-color="yellow"] .bloom::after{
+
+background:#ffe48b;
+
+box-shadow:
+0 0 18px rgba(255,238,120,.7);
+
+}
+
+/* Pink Flower */
+
+.flower[data-color="pink"] .bloom::before,
+.flower[data-color="pink"] .bloom::after{
+
+background:#ffb2d6;
+
+box-shadow:
+0 0 18px rgba(255,170,220,.7);
+
+}
+
+/* Purple Flower */
+
+.flower[data-color="purple"] .bloom::before,
+.flower[data-color="purple"] .bloom::after{
+
+background:#d9b6ff;
+
+box-shadow:
+0 0 18px rgba(215,180,255,.8);
+
+}
+
+/* First petals */
+
+.bloom::before{
+    transform:
+        translate(-50%,-50%)
+        rotate(0deg);
+}
+
+.bloom::after{
+    transform:
+        translate(-50%,-50%)
+        rotate(90deg);
+}
+
+/* Extra petals */
+
+.bloom{
+
+filter:drop-shadow(0 6px 12px rgba(0,0,0,.15));
+
+}
+
+.bloom::after{
+
+box-shadow:
+
+0 -28px 0 inherit,
+0 28px 0 inherit,
+28px 0 0 inherit,
+-28px 0 0 inherit;
+
+}
+
+/* Flower Center */
+
+.bloom span{
+
+display:none;
+
+}
+
+.bloom::marker{
+
+display:none;
+
+}
+
+.bloom{
+
+background:
+
+radial-gradient(
+
+circle,
+
+#ffe16d 0%,
+
+#ffca38 40%,
+
+transparent 42%
+
+);
+
+border-radius:50%;
+
+}
+
+/* Hover Bloom */
+
+.flower:hover .bloom{
+
+transform:
+
+scale(1.18)
+
+rotate(8deg);
+
+}
+
+/* Bloom Click Animation */
+
+.flower.bloomed .bloom{
+
+animation:bloomFlower .8s ease;
+
+}
+
+@keyframes bloomFlower{
+
+0%{
+
+transform:scale(.2);
+
+opacity:0;
+
+}
+
+60%{
+
+transform:scale(1.25);
+
+}
+
+100%{
+
+transform:scale(1);
+
+opacity:1;
+
+}
+
+}
+
+/* Flower Sway */
+
+@keyframes sway{
+
+0%{
+
+transform:rotate(-3deg);
+
+}
+
+50%{
+
+transform:rotate(3deg);
+
+}
+
+100%{
+
+transform:rotate(-3deg);
+
+}
+
+}
+
+/* Soft Glow */
+
+.flower:hover{
+
+filter:
+
+drop-shadow(0 0 18px rgba(255,255,255,.5));
+
+}
+
+/* Garden Depth */
+
+.flower:nth-child(even){
+
+margin-bottom:15px;
+
+}
+
+.flower:nth-child(odd){
+
+margin-bottom:0;
+
+}
+/* ==================================
+   PART 3
+   Hearts • Fireflies • Sparkles
+   Responsive • Confetti
+================================== */
+
+/* Floating Hearts */
+
+#hearts{
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    overflow:hidden;
+    z-index:2;
+}
+
+.heart{
+    position:absolute;
+    bottom:-40px;
+    color:#ff4f9a;
+    font-size:22px;
+    animation:floatHeart linear forwards;
+    opacity:.85;
+}
+
+@keyframes floatHeart{
+
+0%{
+transform:translateY(0) scale(.5);
+opacity:0;
+}
+
+15%{
+opacity:1;
+}
+
+100%{
+transform:translateY(-120vh) translateX(40px) scale(1.2);
+opacity:0;
+}
+
+}
+
+/* Sparkles */
+
+#sparkles{
+
+position:fixed;
+inset:0;
+pointer-events:none;
+z-index:1;
+
+}
+
+.sparkle{
+
+position:absolute;
+width:4px;
+height:4px;
+background:white;
+border-radius:50%;
+box-shadow:0 0 12px white;
+animation:twinkle 2s infinite;
+
+}
+
+@keyframes twinkle{
+
+0%,100%{
+
+opacity:.2;
+transform:scale(.8);
+
+}
+
+50%{
+
+opacity:1;
+transform:scale(1.8);
+
+}
+
+}
+
+/* Fireflies */
+
+#fireflies{
+
+position:fixed;
+inset:0;
+pointer-events:none;
+overflow:hidden;
+z-index:3;
+
+}
+
+.firefly{
+
+position:absolute;
+width:8px;
+height:8px;
+border-radius:50%;
+background:#fff7a8;
+
+box-shadow:
+
+0 0 10px #fff7a8,
+0 0 20px #ffe85c,
+0 0 30px #fff4a0;
+
+animation:fly 10s linear infinite;
+
+}
+
+@keyframes fly{
+
+0%{
+
+transform:
+translate(0,0);
+
+}
+
+25%{
+
+transform:
+translate(120px,-120px);
+
+}
+
+50%{
+
+transform:
+translate(-60px,-250px);
+
+}
+
+75%{
+
+transform:
+translate(90px,-420px);
+
+}
+
+100%{
+
+transform:
+translate(0,-600px);
+
+}
+
+}
+
+/* Falling Petals */
+
+.petal{
+
+position:absolute;
+top:-40px;
+
+width:18px;
+height:18px;
+
+background:#ffc8df;
+
+border-radius:
+60% 40% 60% 40%;
+
+opacity:.8;
+
+animation:petalFall linear forwards;
+
+}
+
+@keyframes petalFall{
+
+0%{
+
+transform:
+translateY(0)
+rotate(0deg);
+
+}
+
+100%{
+
+transform:
+translateY(120vh)
+translateX(120px)
+rotate(720deg);
+
+}
+
+}
+
+/* Confetti Canvas */
+
+#confetti{
+
+position:fixed;
+
+top:0;
+left:0;
+
+width:100%;
+height:100%;
+
+pointer-events:none;
+
+z-index:9999;
+
+}
+
+/* Scrollbar */
+
+::-webkit-scrollbar{
+
+width:10px;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+background:#ff87b9;
+
+border-radius:20px;
+
+}
+
+::-webkit-scrollbar-track{
+
+background:#ffe4f1;
+
+}
+
+/* Responsive */
+
+@media(max-width:768px){
+
+.title{
+
+font-size:2.8rem;
+
+}
+
+.card{
+
+padding:30px 20px;
+
+margin:80px 15px;
+
+}
+
+.message{
+
+font-size:1rem;
+
+line-height:1.8;
+
+}
+
+#musicBtn{
+
+width:58px;
+height:58px;
+font-size:24px;
+
+top:18px;
+right:18px;
+
+}
+
+#surpriseBtn{
+
+padding:14px 30px;
+
+font-size:16px;
+
+}
+
+.garden{
+
+height:240px;
+
+gap:5px;
+
+padding:0 10px;
+
+}
+
+.flower{
+
+transform:scale(.78);
+
+}
+
+footer{
+
+font-size:13px;
+
+}
+
+}
+
+/* Smooth Fade */
+
+.fade-in{
+
+animation:fadeIn 1.2s ease;
+
+}
+
+@keyframes fadeIn{
+
+from{
+
+opacity:0;
+
+transform:translateY(30px);
+
+}
+
+to{
+
+opacity:1;
+
+transform:translateY(0);
+
+}
+
+}
